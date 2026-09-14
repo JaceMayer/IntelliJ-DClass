@@ -1,0 +1,9 @@
+from direct.directnotify import DirectNotifyGlobal
+from direct.distributed.DistributedObjectGlobal import DistributedObjectGlobal
+
+
+class ${NAME}(DistributedObjectGlobal):
+    notify = DirectNotifyGlobal.directNotify.newCategory('${NAME}')
+
+    def announceGenerate(self):
+        DistributedObjectGlobal.announceGenerate(self)

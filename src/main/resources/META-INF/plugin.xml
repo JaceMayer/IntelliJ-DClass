@@ -1,0 +1,81 @@
+<idea-plugin>
+    <id>com.jacemayer.dclass</id>
+    <name>DClass</name>
+    <vendor email="jace@jacemayer.uk">Jace Mayer</vendor>
+
+    <description><![CDATA[
+    Language support for <b>.dc</b> files &mdash; the distributed class definitions used by
+    Panda3D, Astron and OtpGo.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+
+    <depends optional="true" config-file="dclass-python.xml">PythonCore</depends>
+
+    <extensionPoints>
+        <extensionPoint
+            name="externalReferenceProvider"
+            interface="com.jacemayer.dclass.psi.DCExternalReferenceProvider"
+            dynamic="true"/>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+            name="DClass"
+            implementationClass="com.jacemayer.dclass.DCFileType"
+            fieldName="INSTANCE"
+            language="DClass"
+            extensions="dc"/>
+
+        <lang.parserDefinition
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.parser.DCParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.highlight.DCSyntaxHighlighterFactory"/>
+
+        <colorSettingsPage
+            implementation="com.jacemayer.dclass.highlight.DCColorSettingsPage"/>
+
+        <lang.braceMatcher
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.editor.DCBraceMatcher"/>
+
+        <lang.commenter
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.editor.DCCommenter"/>
+
+        <lang.psiStructureViewFactory
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.editor.DCStructureViewFactory"/>
+
+        <annotator
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.annotator.DCAnnotator"/>
+
+        <lang.foldingBuilder
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.editor.DCFoldingBuilder"/>
+
+        <completion.contributor
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.completion.DCCompletionContributor"/>
+
+        <lang.documentationProvider
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.docs.DCDocumentationProvider"/>
+
+        <breadcrumbsInfoProvider
+            implementation="com.jacemayer.dclass.editor.DCBreadcrumbsProvider"/>
+
+        <lang.findUsagesProvider
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.editor.DCFindUsagesProvider"/>
+
+        <targetElementEvaluator
+            language="DClass"
+            implementationClass="com.jacemayer.dclass.editor.DCTargetElementEvaluator"/>
+    </extensions>
+</idea-plugin>

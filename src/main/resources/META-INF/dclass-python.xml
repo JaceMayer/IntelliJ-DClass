@@ -1,0 +1,36 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.jacemayer.dclass">
+        <externalReferenceProvider
+            implementation="com.jacemayer.dclass.python.DCPythonReferenceProvider"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <internalFileTemplate name="DistributedObject"/>
+        <internalFileTemplate name="DistributedObjectAI"/>
+        <internalFileTemplate name="DistributedObjectUD"/>
+        <internalFileTemplate name="DistributedObjectGlobal"/>
+        <internalFileTemplate name="DistributedObjectGlobalAI"/>
+        <internalFileTemplate name="DistributedObjectGlobalUD"/>
+
+        <psi.referenceContributor
+            language="Python"
+            implementation="com.jacemayer.dclass.python.DCSendUpdateReferenceContributor"/>
+
+        <annotator
+            language="Python"
+            implementationClass="com.jacemayer.dclass.python.DCSendUpdateAnnotator"/>
+
+        <codeInsight.lineMarkerProvider
+            language="Python"
+            implementationClass="com.jacemayer.dclass.python.DCPythonLineMarkerProvider"/>
+    </extensions>
+
+    <actions>
+        <action id="com.jacemayer.dclass.NewDistributedClass"
+                class="com.jacemayer.dclass.python.DCNewDistributedClassAction"
+                text="Distributed Class..."
+                description="Create the client, AI and UD halves of a distributed class">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewPythonFile"/>
+        </action>
+    </actions>
+</idea-plugin>
